@@ -10,14 +10,11 @@ export default function RadioButtonsGroup(props) {
 
   const [value, setValue] = useState('esimerkki 1');
   const [FetchData, setFetchData] = useState(null);
-  
+
   const handleChange = (event) => {
     setValue(event.target.value);
   }
     
-  const listItems = FetchData.map((fetchData) =>
-    <li>{fetchData.kysymys}</li>
-  );
 
   const sendButtonPress = async () =>{
     const url = 'https://formsappi.herokuapp.com/api';
@@ -26,7 +23,7 @@ export default function RadioButtonsGroup(props) {
         const response = await fetch(url);
         var data = await response.json();
         setFetchData(data);
-        console.log(data)
+        props.setList(data);
     }catch (error){
         console.log(error);
     }
@@ -43,10 +40,6 @@ export default function RadioButtonsGroup(props) {
         </RadioGroup>
     </FormControl>
     <Button variant='contained' onClick={sendButtonPress}>Lähetä</Button>
-
-    <div>
-            <ul>{listItems}</ul>
-        </div>
 
     </div>
   );
