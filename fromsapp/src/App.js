@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
 import RadioButtonsGroup from './components/RadioButtonsGroup';
-import Lista from './components/Lista';
+import AvoinKysymys from './components/AvoinKysymys';
 
 function App() {
 
-  const [listValue, setListValue] = useState('');
+  const [vastaukset, setVastaukset] = useState(['testi']);
+  const [vastaus, setVastaus] = useState({vastausId:'', vastaus:''})
+ 
+
 
   return(
     <div>
-      <RadioButtonsGroup setList={setListValue}/>
-      <Lista listValue={listValue}/>
+      <RadioButtonsGroup 
+      setVastaukset={setVastaukset}
+      vastaukset={vastaukset}
+      />
+      <AvoinKysymys setVastaukset={setVastaukset}/>
     </div>
   );
 }
