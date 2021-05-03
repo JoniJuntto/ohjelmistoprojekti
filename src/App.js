@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+
+import React, { useState } from 'react';
+import RadioKysymys from './components/RadioKysymys';
+import AvoinKysymys from './components/AvoinKysymys';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+  const [vastaukset, setVastaukset] = useState(['testi']);
+  const [vastaus, setVastaus] = useState({vastausId:'', vastaus:''})
+ 
+
+
+  return(
+    <div>
+      <h1>Otsikko</h1>
+      <RadioKysymys 
+      setVastaukset={setVastaukset}
+      vastaukset={vastaukset}
+      />
+      <AvoinKysymys setVastaukset={setVastaukset}/>
     </div>
   );
 }
-
 export default App;
