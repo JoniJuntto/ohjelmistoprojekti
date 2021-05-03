@@ -82,7 +82,7 @@ export default function AvoinKysymys () {
     e.preventDefault();
 
     setValues({
-        vastaus: '',
+        vastaus: 'vastaus',
         avoin: false
     });
 
