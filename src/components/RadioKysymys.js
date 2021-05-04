@@ -5,20 +5,13 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
-import { Button } from '@material-ui/core';
 
-export default function RadioButtonsGroup(props) {
+export default function RadioButtonsGroup() {
 
   const [value, setValue] = useState('esimerkki 1');
-  const [FetchData, setFetchData] = useState(null);
 
   const handleChange = (event) => {
     setValue(event.target.value);
-  }
-
-
-  const sendButtonPress = async () => {
-    
   }
 
   return (

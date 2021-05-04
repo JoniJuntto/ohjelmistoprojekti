@@ -1,23 +1,20 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import RadioKysymys from './components/RadioKysymys';
 import AvoinKysymys from './components/AvoinKysymys';
+import TestiKomponentti from './components/TestiKomponentti';
+import NaytaKaikki from './components/NaytaKaikki';
 
 function App() {
 
-  const [vastaukset, setVastaukset] = useState(['testi']);
-  const [vastaus, setVastaus] = useState({vastausId:'', vastaus:''})
- 
-
-
   return(
     <div>
+      <TestiKomponentti />
+      <NaytaKaikki />
       <h1>Otsikko</h1>
-      <RadioKysymys 
-      setVastaukset={setVastaukset}
-      vastaukset={vastaukset}
-      />
-      <AvoinKysymys setVastaukset={setVastaukset}/>
+
+      <RadioKysymys/>
+      <AvoinKysymys/>
     </div>
   );
 }

@@ -7,6 +7,7 @@ import CreateIcon from '@material-ui/icons/Create';
 import ClearIcon from '@material-ui/icons/Clear';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+
 import axios from 'axios';
 
 const useStyles = makeStyles({
@@ -33,11 +34,11 @@ const useStyles = makeStyles({
   }
 })
 
-export default function AvoinKysymys () {
+export default function TestiKomponentti () {
   const classes = useStyles();
 
   const [data, setValues] = useState({
-      vastaus: '',
+      kysymys: '',
   });
 
   const [viesti, setViesti] = useState('');
@@ -56,7 +57,7 @@ export default function AvoinKysymys () {
 
 
     const formData = {
-      vastaus: data.vastaus,
+      kysymys: data.vastaus
     }
 
     console.log(formData);
@@ -65,7 +66,7 @@ export default function AvoinKysymys () {
     .then(response => {
         if (response.status === 200) {
             setValues({
-                vastaus: '',
+                kysymys: '',
             });
             setViesti('Lisättiin');
             console.log(response.status, "Onnistui")
@@ -80,6 +81,7 @@ export default function AvoinKysymys () {
 
     setValues({
         vastaus: 'vastaus',
+        avoin: false
     });
 
     setViesti('');
