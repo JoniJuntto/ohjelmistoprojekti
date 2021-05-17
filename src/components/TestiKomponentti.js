@@ -69,10 +69,10 @@ export default function TestiKomponentti () {
                 kysymys: '',
             });
             setViesti('Lisättiin');
-            console.log(response.status, "Onnistui")
         } else {
             setViesti('Lisäys ei onnistunut');
           }
+          console.log(response.status)
     })
 }
    

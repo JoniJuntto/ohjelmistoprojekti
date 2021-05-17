@@ -1,10 +1,9 @@
   
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import CreateIcon from '@material-ui/icons/Create';
-import ClearIcon from '@material-ui/icons/Clear';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
@@ -38,7 +37,10 @@ export default function AvoinKysymys () {
 
   const [data, setValues] = useState({
       vastaus: '',
+      kysymys: null
   });
+
+  const [kysymys, setKysymys] = useState('Kysymys')
 
   const [viesti, setViesti] = useState('');
 
@@ -51,50 +53,54 @@ export default function AvoinKysymys () {
     setViesti('');
   };
 
+  const haeKysymys = async () => {
+    try {
+      const response = await fetch('https://ohjelmistoprojektiserver.herokuapp.com/kysymys/1');
+      const json = await response.json();
+      console.log(json + "Hei!");
+      setKysymys(json);
+    } catch (error) {
+      console.log(error);
+  }
+  }
+
   const lisaaVastaus = (e) => {
     e.preventDefault();
 
 
     const formData = {
       vastaus: data.vastaus,
+      kysymys: kysymys
     }
 
     console.log(formData);
 
-    axios.post('https://ohjelmistoprojektiserver.herokuapp.com/kysely', formData)
+    axios.post('https://ohjelmistoprojektiserver.herokuapp.com/kysymys', formData)
     .then(response => {
         if (response.status === 200) {
             setValues({
                 vastaus: '',
             });
-            setViesti('Lisättiin');
-            console.log(response.status, "Onnistui")
+            setViesti('Vastattu');
         } else {
-            setViesti('Lisäys ei onnistunut');
+            setViesti('Vastaus ei onnistunut');
           }
     })
 }
-   
-  const tyhjenna = (e) => {
-    e.preventDefault();
 
-    setValues({
-        vastaus: 'vastaus',
-    });
-
-    setViesti('');
-  }
-
+useEffect( () => {
+  haeKysymys();
+}, [])
 
   return (
     <Paper className={ classes.paper }>
+      <Typography>{kysymys}</Typography>
     <form>
-      <TextField label='vastaus' name='vastaus' value={ data.vastaus }
+      <TextField label={kysymys} name='vastaus' value={ data.vastaus }
         onChange={ (e) => muuta(e) } required fullWidth />
 
       <div className={ classes.div }>
-        <Button onClick={ (e) => lisaaVastaus(e) } variant='contained' color='primary' className={ classes.button}  startIcon={ <CreateIcon /> }>Lisää</Button>
-        <Button onClick={ (e) => tyhjenna(e) } variant='contained' color='secondary' startIcon={ <ClearIcon /> }>Tyhjennä</Button>
+        <Button onClick={ (e) => lisaaVastaus(e) } variant='contained' color='primary' className={ classes.button} >Ok!</Button>
       </div>
     </form>
     <Typography className={ classes.typo }>{ viesti }</Typography>

@@ -1,21 +1,22 @@
 
-import React from 'react';
-import RadioKysymys from './components/RadioKysymys';
-import AvoinKysymys from './components/AvoinKysymys';
-import TestiKomponentti from './components/TestiKomponentti';
-import NaytaKaikki from './components/NaytaKaikki';
+import React,{useState, useEffect} from 'react';
+import Etusivu from './components/Etusivu';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import Kysely from './components/Kysely';
 
 function App() {
 
-  return(
-    <div>
-      <TestiKomponentti />
-      <NaytaKaikki />
-      <h1>Otsikko</h1>
+  const [kysely_id, setKysely_id] = useState(null);
 
-      <RadioKysymys/>
-      <AvoinKysymys/>
-    </div>
+  return(
+    <BrowserRouter>
+          <Switch>
+            <Route path='/' exact render={ (props) => <Etusivu {...props} kysely_id={kysely_id} setKysely_id={setKysely_id} />}/>
+            <Route path='/kysely/' render={ (props) => <Kysely {...props} kysely_id={kysely_id} setKysely_id={setKysely_id}/>}/>
+          </Switch>
+      </BrowserRouter>
   );
 }
+
 export default App;

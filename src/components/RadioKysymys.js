@@ -14,10 +14,12 @@ export default function RadioButtonsGroup() {
     setValue(event.target.value);
   }
 
+  
+
   return (
     <div>
       <FormControl component="fieldset">
-        <FormLabel component="legend">Otsikko</FormLabel>
+        <FormLabel component="legend">{}</FormLabel>
         <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
           <FormControlLabel value="esimerkki 1" control={<Radio />} label="esimerkki 1" />
           <FormControlLabel value="esimerkki 2" control={<Radio />} label="esimerkki 2" />
