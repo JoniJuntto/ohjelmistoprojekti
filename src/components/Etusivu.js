@@ -1,13 +1,11 @@
 
-import React,{useState, useEffect} from 'react';
-import Kysely from './Kysely';
+import React,{useState} from 'react';
+import Listaus from './Listaus';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import CreateIcon from '@material-ui/icons/Create';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 
@@ -60,7 +58,7 @@ function Etusivu(props) {
   return(
     <div>
       <Paper className={ classes.paper }>
-      <Typography>Syötä kysely ID</Typography>
+      <Typography>Syötä kyselyn nimi</Typography>
     <form>
       <TextField label='Kysely ID' name='vastaus' value={ data }
         onChange={ (e) => muuta(e) } required fullWidth />
@@ -72,6 +70,7 @@ function Etusivu(props) {
     <Link to='/kysely'>PAINA</Link>
     <Typography className={ classes.typo }>{ viesti }</Typography>
     </Paper>
+    <Listaus setKysely_id={props.setKysely_id}/>
     </div>
   );
 }

@@ -1,24 +1,23 @@
-  
+
 import React, { useState, useEffect } from 'react';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import CreateIcon from '@material-ui/icons/Create';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 
 const useStyles = makeStyles({
   paper: {
-    margin:10, 
-    padding:10,
+    margin: 10,
+    padding: 10,
   },
   tiedosto: {
-    marginLeft: 20, 
+    marginLeft: 20,
     marginRight: 20,
   },
   div: {
-    textAlign:'center', 
+    textAlign: 'center',
     marginTop: 10,
   },
   button: {
@@ -26,18 +25,18 @@ const useStyles = makeStyles({
   },
   kuva: {
     display: 'none',
-  }, 
+  },
   typo: {
-    marginTop:20,
+    marginTop: 20,
   }
 })
 
-export default function AvoinKysymys () {
+export default function AvoinKysymys(props) {
   const classes = useStyles();
 
   const [data, setValues] = useState({
-      vastaus: '',
-      kysymys: null
+    vastaus: '',
+    kysymys: null
   });
 
   const [kysymys, setKysymys] = useState('Kysymys')
@@ -61,7 +60,7 @@ export default function AvoinKysymys () {
       setKysymys(json);
     } catch (error) {
       console.log(error);
-  }
+    }
   }
 
   const lisaaVastaus = (e) => {
@@ -76,34 +75,51 @@ export default function AvoinKysymys () {
     console.log(formData);
 
     axios.post('https://ohjelmistoprojektiserver.herokuapp.com/kysymys', formData)
-    .then(response => {
+      .then(response => {
         if (response.status === 200) {
-            setValues({
-                vastaus: '',
-            });
-            setViesti('Vastattu');
+          setValues({
+            vastaus: '',
+          });
+          setViesti('Vastattu');
         } else {
-            setViesti('Vastaus ei onnistunut');
-          }
-    })
-}
+          setViesti('Vastaus ei onnistunut');
+        }
+      })
+  }
 
-useEffect( () => {
-  haeKysymys();
-}, [])
+  useEffect(() => {
+    haeKysymys();
+  }, [])
 
-  return (
-    <Paper className={ classes.paper }>
-      <Typography>{kysymys}</Typography>
-    <form>
-      <TextField label={kysymys} name='vastaus' value={ data.vastaus }
-        onChange={ (e) => muuta(e) } required fullWidth />
 
-      <div className={ classes.div }>
-        <Button onClick={ (e) => lisaaVastaus(e) } variant='contained' color='primary' className={ classes.button} >Ok!</Button>
+  if (props.avoinData.length > 0) {
+    return (
+      <div>
+        {
+          props.avoinData.map(val => {
+            return (
+              <div>
+                <Paper className={classes.paper}>
+                  <Typography>{val.key.kysymysteksti}</Typography>
+                  <form>
+                    <TextField label={kysymys} name='vastaus' value={data.vastaus}
+                      onChange={(e) => muuta(e)} required fullWidth />
+
+                    <div className={classes.div}>
+                      <Button onClick={(e) => lisaaVastaus(e)} variant='contained' color='primary' className={classes.button} >Ok!</Button>
+                    </div>
+                  </form>
+                  <Typography className={classes.typo}>{viesti}</Typography>
+                </Paper>
+              </div>
+            )
+          })
+        }
       </div>
-    </form>
-    <Typography className={ classes.typo }>{ viesti }</Typography>
-    </Paper>
-  );
+    );
+  }
+
+  else{return (
+    ''
+  )};
 }
