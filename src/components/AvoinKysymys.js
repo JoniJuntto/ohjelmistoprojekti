@@ -34,14 +34,13 @@ const useStyles = makeStyles({
 
 export default function AvoinKysymys(props) {
   const classes = useStyles();
-
+  
   const [data, setValues] = useState({
     vastaus: '',
     kysymys: null
   });
 
   const [kysymys, setKysymys] = useState('Kysymys')
-
   const [viesti, setViesti] = useState('');
 
   const muuta = (e) => {
@@ -75,7 +74,7 @@ export default function AvoinKysymys(props) {
 
 
   if (props.avoinData.length > 0) {
-    console.log(props.avoinData.length);
+
     return (
       <div>
         {
@@ -102,9 +101,9 @@ export default function AvoinKysymys(props) {
     );
   }
 
-  else{
-    console.log(props.avoinData.length);
+  else {
     return (
-    ''
-  )};
+      ''
+    )
+  };
 }

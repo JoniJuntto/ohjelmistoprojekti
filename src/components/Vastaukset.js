@@ -22,7 +22,6 @@ export default function Vastaukset() {
         try{
             const response = await fetch('https://ohjelmistoprojektiserver.herokuapp.com/api/vastauses')
             const json = await response.json();
-            console.log(json)
             setVastaukset(json._embedded.vastauses)
         }catch(e){
             console.log(e);
