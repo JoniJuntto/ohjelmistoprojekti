@@ -52,16 +52,6 @@ export default function AvoinKysymys(props) {
     setViesti('');
   };
 
-  const haeKysymys = async () => {
-    try {
-      const response = await fetch('https://ohjelmistoprojektiserver.herokuapp.com/kysymys/1');
-      const json = await response.json();
-      console.log(json + "Hei!");
-      setKysymys(json);
-    } catch (error) {
-      console.log(error);
-    }
-  }
 
   const lisaaVastaus = (e) => {
     e.preventDefault();
@@ -71,8 +61,6 @@ export default function AvoinKysymys(props) {
       vastaus: data.vastaus,
       kysymys: kysymys
     }
-
-    console.log(formData);
 
     axios.post('https://ohjelmistoprojektiserver.herokuapp.com/kysymys', formData)
       .then(response => {
@@ -87,12 +75,9 @@ export default function AvoinKysymys(props) {
       })
   }
 
-  useEffect(() => {
-    haeKysymys();
-  }, [])
-
 
   if (props.avoinData.length > 0) {
+    console.log(props.avoinData.length);
     return (
       <div>
         {
@@ -102,7 +87,7 @@ export default function AvoinKysymys(props) {
                 <Paper className={classes.paper}>
                   <Typography>{val.key.kysymysteksti}</Typography>
                   <form>
-                    <TextField label={kysymys} name='vastaus' value={data.vastaus}
+                    <TextField label={val.key.kysymysteksti} name='vastaus' value={data.vastaus}
                       onChange={(e) => muuta(e)} required fullWidth />
 
                     <div className={classes.div}>
@@ -119,7 +104,9 @@ export default function AvoinKysymys(props) {
     );
   }
 
-  else{return (
+  else{
+    console.log(props.avoinData.length);
+    return (
     ''
   )};
 }

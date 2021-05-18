@@ -15,6 +15,7 @@ export default function RadioButtonsGroup(props) {
   }
 
   if (props.radioData.length > 0) {
+    console.log(props.radioData)
     return (
       <div>
         {
@@ -22,7 +23,7 @@ export default function RadioButtonsGroup(props) {
             return (
               <div>
                 <FormControl component="fieldset">
-                  <FormLabel component="legend">{val.kysymysteksti}</FormLabel>
+                  <FormLabel component="legend">{val.key.kysymysteksti}</FormLabel>
                   <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
                     <FormControlLabel value="esimerkki 1" control={<Radio />} label="esimerkki 1" />
                     <FormControlLabel value="esimerkki 2" control={<Radio />} label="esimerkki 2" />
@@ -37,7 +38,8 @@ export default function RadioButtonsGroup(props) {
     );
   }
 
-else{return('');}
+else if(props.radioData.length == 0){return(null);}
+else{return(null)}
 
 
 }
