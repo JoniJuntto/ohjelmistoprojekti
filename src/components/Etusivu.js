@@ -72,6 +72,9 @@ function Etusivu(props) {
         <Paper className={classes.paper}>
             <a className={classes.a} href='https://ohjelmistoprojektiserver.herokuapp.com/addKysely'>Lisää kysely</a>
         </Paper>
+        <Paper className={classes.paper}>
+            <Link to='/vastaukset'>Vastaukset</Link>
+        </Paper>
       <h1 className={classes.otsikko}>Kyselyt</h1>
     <Listaus setKysely_id={props.setKysely_id}/>
     </div>
