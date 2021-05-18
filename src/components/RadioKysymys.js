@@ -25,9 +25,9 @@ export default function RadioButtonsGroup(props) {
                 <FormControl component="fieldset">
                   <FormLabel component="legend">{val.key.kysymysteksti}</FormLabel>
                   <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
-                    <FormControlLabel value="esimerkki 1" control={<Radio />} label="esimerkki 1" />
-                    <FormControlLabel value="esimerkki 2" control={<Radio />} label="esimerkki 2" />
-                    <FormControlLabel value="esimerkki 3" control={<Radio />} label="esimerkki 3" />
+                    <FormControlLabel value="Kyllä" control={<Radio />} label="Kyllä" />
+                    <FormControlLabel value="Ei" control={<Radio />} label="Ei" />
+                    <FormControlLabel value="Ehkä" control={<Radio />} label="Ehkä" />
                   </RadioGroup>
                 </FormControl>
               </div>

@@ -28,6 +28,7 @@ const useStyles = makeStyles({
   },
   typo: {
     marginTop: 20,
+    fontSize: 20
   }
 })
 
@@ -53,7 +54,7 @@ export default function AvoinKysymys(props) {
 
   const lisaaVastaus = (e) => {
     e.preventDefault();
-
+    setViesti('Kiitos vastauksesta!')
 
     const formData = {
       vastaus: data.vastaus
@@ -91,8 +92,8 @@ export default function AvoinKysymys(props) {
                       <Button onClick={(e) => lisaaVastaus(e)} variant='contained' color='primary' className={classes.button} >Ok!</Button>
                     </div>
                   </form>
-                  <Typography className={classes.typo}>{viesti}</Typography>
                 </Paper>
+                <Typography className={classes.typo}>{viesti}</Typography>
               </div>
             )
           })

@@ -11,8 +11,11 @@ import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
     paper: {
-      margin:10, 
+      margin:10,
+      marginLeft: '45%',
+      marginRight: '45%', 
       padding:10,
+      
     },
     tiedosto: {
       marginLeft: 20, 
@@ -34,6 +37,11 @@ const useStyles = makeStyles({
     otsikko:{
         textAlign: 'center',
         justifyContent: 'center',
+    },
+    a:{
+        textAlign: 'center',
+        justifyContent: 'center',
+        textDecoration: 'none',
     }
   })
 
@@ -61,6 +69,9 @@ function Etusivu(props) {
 
   return(
     <div>
+        <Paper className={classes.paper}>
+            <a className={classes.a} href='https://ohjelmistoprojektiserver.herokuapp.com/addKysely'>Lisää kysely</a>
+        </Paper>
       <h1 className={classes.otsikko}>Kyselyt</h1>
     <Listaus setKysely_id={props.setKysely_id}/>
     </div>
