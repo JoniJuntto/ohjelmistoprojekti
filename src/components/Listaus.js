@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 
 
 const useStyles = makeStyles({
@@ -31,9 +32,9 @@ export default function Listaus(props) {
     const classes = useStyles();
     const [kyselyt, setKyselyt] = useState([]);
 
-    const aseta = (kysely,e) =>{
-        props.setKysely_id(e.kysely.nimi)
-        console.log(e.kysely.nimi)
+    const aseta = (nimi) =>{
+        props.setKysely_id(nimi);
+        console.log(nimi)
     }
 
     const kaikkiKyselyt = async()=>{
@@ -54,7 +55,7 @@ export default function Listaus(props) {
     return(
         kyselyt.map((kysely) =>
                 <div className={classes.root}>
-                    <Link onClick={(e) => aseta(kysely,e)} to='/kysely/'>{kysely.nimi}</Link>
+                    <Link onClick={aseta(kysely.nimi)} to={`/kysely/${kysely.nimi}`}>{kysely.nimi}</Link>
                 </div>)
     );
 }

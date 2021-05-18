@@ -57,19 +57,7 @@ function Etusivu(props) {
 
   return(
     <div>
-      <Paper className={ classes.paper }>
-      <Typography>Syötä kyselyn nimi</Typography>
-    <form>
-      <TextField label='Kysely ID' name='vastaus' value={ data }
-        onChange={ (e) => muuta(e) } required fullWidth />
-
-      <div className={ classes.div }>
-        <Button onClick={ (e) => lisaaVastaus(e) } variant='contained' color='primary' className={ classes.button} >Ok!</Button>
-      </div>
-    </form>
-    <Link to='/kysely'>PAINA</Link>
-    <Typography className={ classes.typo }>{ viesti }</Typography>
-    </Paper>
+      
     <Listaus setKysely_id={props.setKysely_id}/>
     </div>
   );
