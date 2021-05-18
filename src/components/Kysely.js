@@ -1,12 +1,27 @@
 import React,{useState, useEffect} from 'react';
 import RadioKysymys from './RadioKysymys';
 import AvoinKysymys from './AvoinKysymys';
-import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+    hela:{
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginLeft: '35%',
+        marginRight: '35%'
+    },
+    otsikko:{
+        textAlign: 'center',
+        justifyContent: 'center',
+        fontSize: 35
+    }
+})
 
 
 
 function Kysely(props) {
 
+    const classes = useStyles();
   const [kysely, setKysely] = useState(null)
   const [radioData, setRadioData] = useState([]);
   const [avoinData, setAvoinData] = useState([]);
@@ -38,7 +53,8 @@ function Kysely(props) {
   }, [])
 
   return(
-    <div>
+    <div className = {classes.hela}>
+        <h1 className={classes.otsikko}>{props.kysely_id}</h1>
         <RadioKysymys radioData = { radioData }/>
         <AvoinKysymys avoinData = { avoinData } />
     </div>

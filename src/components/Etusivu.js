@@ -30,6 +30,10 @@ const useStyles = makeStyles({
     }, 
     typo: {
       marginTop:20,
+    },
+    otsikko:{
+        textAlign: 'center',
+        justifyContent: 'center',
     }
   })
 
@@ -57,7 +61,7 @@ function Etusivu(props) {
 
   return(
     <div>
-      
+      <h1 className={classes.otsikko}>Kyselyt</h1>
     <Listaus setKysely_id={props.setKysely_id}/>
     </div>
   );

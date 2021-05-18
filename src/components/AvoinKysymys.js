@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -48,8 +48,6 @@ export default function AvoinKysymys(props) {
       ...data,
       [e.target.name]: e.target.value
     });
-
-    setViesti('');
   };
 
 
@@ -58,11 +56,10 @@ export default function AvoinKysymys(props) {
 
 
     const formData = {
-      vastaus: data.vastaus,
-      kysymys: kysymys
+      vastaus: data.vastaus
     }
 
-    axios.post('https://ohjelmistoprojektiserver.herokuapp.com/kysymys', formData)
+    axios.post('https://ohjelmistoprojektiserver.herokuapp.com/api/vastauses', formData)
       .then(response => {
         if (response.status === 200) {
           setValues({

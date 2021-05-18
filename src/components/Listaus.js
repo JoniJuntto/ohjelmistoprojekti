@@ -1,13 +1,17 @@
 import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
 
 
 const useStyles = makeStyles({
     paper: {
       margin:10, 
       padding:10,
+      marginRight: '35%',
+      marginLeft: '35%',
+      textAlign:'center',
+      justifyContent:'center',
     },
     tiedosto: {
       marginLeft: 20, 
@@ -25,6 +29,11 @@ const useStyles = makeStyles({
     }, 
     typo: {
       marginTop:20,
+    },
+    link:{
+        fontSize: 30,
+        textDecoration: 'none',
+        color: 'black'
     }
   })
 
@@ -55,7 +64,9 @@ export default function Listaus(props) {
     return(
         kyselyt.map((kysely) =>
                 <div className={classes.root}>
-                    <Link onClick={aseta(kysely.nimi)} to={`/kysely/${kysely.nimi}`}>{kysely.nimi}</Link>
+                    <Paper className={classes.paper}>
+                        <Link className={classes.link} onClick={() => aseta(kysely.nimi)} to={`/kysely/${kysely.nimi}`}>{kysely.nimi}</Link>
+                    </Paper>
                 </div>)
     );
 }
